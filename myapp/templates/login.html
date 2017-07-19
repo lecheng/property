@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginApp">
+<head>
+    <meta charset="UTF-8">
+    <title>房产网站生成平台</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/login.css')}}">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-messages.js"></script>-->
+</head>
+<body class="bg">
+<div class="container-fluid" ng-controller="LoginController">
+    <div class="col-xs-8 col-xs-offset-2 center">
+        <h2>房产网站生成平台</h2>
+    </div>
+    <div class="col-xs-4 col-xs-offset-4 box">
+        <form action="/login/" role="form" method="GET">
+            <ul>
+                <li>
+                    <div class="input-group">
+                            <span class="input-group-addon green-bg green-border glyphicon glyphicon-envelope" style="top:0px;" id="basic-addon2"></span>
+                            <input name="login_email" type="email" class="form-control green-border" placeholder="请填入你的邮箱" aria-describedby="basic-addon2" required>
+                    </div>
+                </li>
+                <li>
+                    <div class="input-group">
+                        <span class="input-group-addon green-bg green-border glyphicon glyphicon-lock" style="top:0px;" id="basic-addon6"></span>
+                        <input name="login_password" type="password" class="form-control green-border" placeholder="请填入你的密码" aria-describedby="basic-addon6" required>
+                    </div>
+                </li>
+                <li>
+                    <input name="isRemember" type="checkbox">  记住密码
+                    <a data-toggle="modal" data-target="#forgetModal" class="right">忘记密码</a>
+                </li>
+                <li>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-6 btng">
+                            <input type="submit" value="登录" class="btn ss">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 btng">
+                            <button type="button" class="btn ss" data-toggle="modal" data-target="#registerModal">注册</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- Modal -->
+    <div id="registerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">注册</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/register/" role="form">
+                        <ul>
+                            <li>
+                                <div class="input-group">
+                                    <span class="input-group-addon green-bg green-border glyphicon glyphicon-user" style="top:0px;" id="basic-addon3"></span>
+                                    <input name="r_name" type="text" class="form-control green-border" placeholder="请填入你的姓名" aria-describedby="basic-addon3" required>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-group">
+                                    <span class="input-group-addon green-bg green-border glyphicon glyphicon-envelope" style="top:0px;" id="basic-addon4"></span>
+                                    <input name="r_email" type="email" class="form-control green-border" placeholder="请填入你的邮箱" aria-describedby="basic-addon4" required>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-group">
+                                    <span class="input-group-addon green-bg green-border glyphicon glyphicon-lock" style="top:0px;" id="basic-addon1"></span>
+                                    <input name="r_password" type="password" class="form-control green-border" placeholder="请填入你的密码" aria-describedby="basic-addon1" required>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-group">
+                                    <span class="input-group-addon green-bg green-border glyphicon glyphicon-lock" style="top:0px;" id="basic-addon7"></span>
+                                    <input name="r_password_confirm" type="password" class="form-control green-border" placeholder="请再次输入你的密码" aria-describedby="basic-addon7" required>
+                                </div>
+                            </li>
+                            <li>
+                            <div class="col-xs-12 btng">
+                                <input type="submit" value="注册" class="btn ss">
+                            </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+                <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Success! </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+            </div>
+
+        </div>
+    </div>
+    <div id="forgetModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">忘记密码</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="form.html">
+                        <ul>
+                            <li>
+                                <div class="input-group">
+                                    <span class="input-group-addon green-bg green-border glyphicon glyphicon-envelope" style="top:0px;" id="basic-addon5"></span>
+                                    <input name="forget-email" type="text" class="form-control green-border" placeholder="请填入你的注册邮箱，你将收到重置密码的邮件!" aria-describedby="basic-addon5" required>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-xs-12 btng">
+                        <input type="submit" value="发送" class="btn ss">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{url_for('static', filename='assets/js/ng-login.js')}}"></script>
+</body>
+</html>

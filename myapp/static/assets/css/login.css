@@ -1,0 +1,60 @@
+h2{
+    color:white;
+    margin-top: 20%;
+}
+ul{
+padding-left:0px;
+}
+ul li{
+list-style: none;
+margin-top:15px;
+}
+.btng{
+    margin-top:-15px;
+    margin-bottom:15px;
+    text-align: center;
+}
+.ss{
+    margin-top:30px;
+    background: greenyellow;
+    width:100px;
+    display:inline-block;
+}
+.ss:hover{
+    background: #219bd7;
+    color:white;
+}
+.center{
+    text-align: center;
+}
+
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+.box{
+    position: absolute;
+    top: 36.5%;
+    background: white;
+}
+.green-bg{
+    background: greenyellow;
+}
+
+.green-border{
+    border: 1px solid greenyellow;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../img/property-bg.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-repeat: no-repeat;
+    background-size: cover;
+}

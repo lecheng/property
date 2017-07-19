@@ -1,0 +1,15 @@
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+.item{
+    margin-top:5px;
+}
+.center{
+    text-align: center;
+}
+#edit-btn{
+    margin-top: 15px;
+}

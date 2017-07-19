@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房产网站模版生成平台</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">房产网站生成平台</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 用户名<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="login.html">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="home.html">首页</a></li>
+        <li><a href="property.html">房产管理</a></li>
+        <li><a href="#" class="active">房产编辑</a></li>
+    </ol>
+</div>
+<div class="container-fluid col-sm-10 col-sm-offset-1">
+    <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Property Information</h3>
+            </div>
+            <div class="panel-body">
+                <div><label>Domains</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="Website domain" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. www.laproperty.com)</span>
+                    </div>
+                </div>
+                <div><label>Address</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="Property Address Line 1" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 1223 Oakhaven Rd)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="Property Address Line 2(Optional)">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. Room #302)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="City, State Zip" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. Arcadia, CA 91006)</span>
+                    </div>
+                </div>
+                <div><label>Details</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="Property Number (Optional)">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. IV15194901)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon2">$</span>
+                            <input class="form-control" type="number" placeholder="List Price in USD" required aria-describedby="basic-addon2">
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 288000)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" placeholder="Number of Beds" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 4)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" placeholder="Number of Baths" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 4)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" placeholder="Number of Floors (Optional)">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 2)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" placeholder="Home Size(in sqft)" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 4388)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" placeholder="Lot Size(in sqft)" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 14375)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" placeholder="Year Built" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 1984)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <select id="property-eng" class="form-control" required>
+                            <option value="" disabled selected>Property Type in English</option>
+                            <option value="Single Family Residence">Single Family Residence</option>
+                            <option value="Single Family Residence">Single Family Residence 2</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. Single Family Residence)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <select id="property-chn" class="form-control" required>
+                            <option value="" disabled selected>Property Type in Chinese</option>
+                            <option value="独立屋">独立屋</option>
+                            <option value="独立屋">独立屋2</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 独立屋)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input placeholder="List Date" id="datetimepicker1" type='text' class="form-control" required/>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. Jun 21, 2016)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="School District in English" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. Arcadia Unified)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="School District in Chinese" required>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 阿凯迪亚学区)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <select id="sale-state" class="form-control" required>
+                            <option value="" disabled selected>Sale State</option>
+                            <option value="OnSale">On Sale</option>
+                            <option value="Sold">Sold</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. On Sale)</span>
+                    </div>
+                </div>
+                <div><label>Description</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <textarea class="form-control" style="height:200px;" placeholder="Description in English" required></textarea>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. Gorgeous split-level home located
+      in prestigious North-Arcadia with...)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <textarea class="form-control" style="height:200px;" placeholder="Description in Chinese" required></textarea>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. 坐落在北阿凯迪亚的豪华双层别墅...)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Video Tour(Choose One)</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="Vimeo ID (Optional)">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('https://vimeo.com/173515424');">173515424</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" placeholder="Youtube ID (Optional)">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('https://www.youtube.com/watch?v=lguKnO0Ngx4');">lguKnO0Ngx4</a>)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Slogan</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12 item">
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="Slogan Title(English)">
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <span>(eg. Looking for a new home?)</span>
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="Slogan Subtitle(English)">
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <span>(eg. Here it is, your very last stop!)</span>
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="Slogan Title(Chinese)">
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <span>(eg. 欢迎光临！)</span>
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="Slogan Subtitle(Chinese)">
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <span>(eg. 想要一个家？这就是你一直在寻找的地方)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Upload Images</h3>
+            </div>
+            <div class="panel-body">
+                <div><label>Grid Image</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"OVERVIEW (390*340)"</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/grid_overview.jpg');">Grid Image - Overview</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"GALLERY" (390*340)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/grid_gallery.jpg');">Grid Image - Gallery</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"CONTACT" (390*695)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/grid_contact.jpg');">Grid Image - Contact</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"EXPLORE" (795*340)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/grid_explore.jpg');">Grid Image - Explore</a>)</span>
+                    </div>
+                </div>
+                <div><label>Background Image</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"OVERVIEW (1200*695)"</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/background_overview.jpg');">Background Image - Overview</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>CONTACT" (1200*695)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/background_contact.jpg');">Background Image - Contact</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"CONTACT (Phone)" (480*695)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/background_contact_phone.jpg');">Background Image - Contact(Phone)</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>"EXPLORE" (1200*695)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/background_explore.jpg');">Background Image - Explore</a>)</span>
+                    </div>
+                </div>
+                <div><label>Slideshow & Gallery</label></div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>Slideshow (1600 wide)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/slideshow/slideshow_1.jpg');window.open('./example/slideshow/slideshow_2.jpg');window.open('./example/slideshow/slideshow_3.jpg');window.open('./example/slideshow/slideshow_4.jpg');window.open('./example/slideshow/slideshow_5.jpg');">Slideshow Images</a>)</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="col-sm-8">
+                        <span>Gallery (1200 wide or 695 tall)</span><input type="file" style="display:inline">
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <span>(eg. <a href="#" onclick="window.open('./example/gallery/gallery_1.jpg');window.open('./example/gallery/gallery_2.jpg');window.open('./example/gallery/gallery_3.jpg');window.open('./example/gallery/gallery_4.jpg');">Gallery Images</a>)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-sm-offset-10" style="margin-bottom: 15px;">
+        <a href="property.html" class="btn btn-danger">取消</a>
+        <a class="btn btn-info">保存</a>
+    </div>
+</div>
+
+</body>
+<footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                    format:'MMM DD, YYYY',
+            });
+            $('#property-eng').change(function(){
+                var id = this.selectedIndex;
+                $('#property-chn').prop('selectedIndex',id);
+            });
+            $('#property-chn').change(function(){
+                var id = this.selectedIndex;
+                $('#property-eng').prop('selectedIndex',id);
+            })
+        });
+    </script>
+</footer>
+</html>
