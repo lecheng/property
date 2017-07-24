@@ -8,15 +8,15 @@ class Agent(db.Model):
     __tablename__ = "agent"
 
     id = db.Column(db.String(45), primary_key=True)
-    agent_name = db.Column(db.String(45), nullable=True)
+    agent_name = db.Column(db.String(45), nullable=False)
     agent_license = db.Column(db.String(45), nullable=True)
     agent_phone = db.Column(db.String(45), nullable=True)
     agent_phone_china = db.Column(db.String(45), nullable=True)
     agent_wechat = db.Column(db.String(45), nullable=True)
-    agent_email = db.Column(db.String(45), unique=True, nullable=True)
+    agent_email = db.Column(db.String(45), unique=True, nullable=False)
     agent_office = db.Column(db.String(100), nullable=True)
     agent_qrcode = db.Column(db.String(100), nullable=True)
-    password = db.Column(db.String(100), nullable=True)
+    password = db.Column(db.String(100), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=True)
     confirmed = db.Column(db.Boolean, nullable=True)
     confirmed_on = db.Column(db.DateTime, nullable=True)
@@ -24,6 +24,7 @@ class Agent(db.Model):
     is_admin = db.Column(db.Boolean, nullable=True)
     password_reset_token = db.Column(db.String(100), nullable=True)
     is_login = db.Column(db.Boolean, nullable=True)
+    # properties = db.relationship('Property',backref='agent',lazy='dynamic')
 
     def __init__(self, id, agent_name, agent_email, password, agent_license="",agent_phone="",
         agent_phone_china="", agent_wechat="", agent_office="",
@@ -67,6 +68,7 @@ class Property(db.Model):
 
     idproperty = db.Column(db.String(45), primary_key=True)
     agent_id = db.Column(db.String(45, db.ForeignKey('agent.id')))
+    # agent = db.relationship('Agent',backref='properties',lazy='dynamic')
     address1 = db.Column(db.String(45), nullable=True)
     address2 = db.Column(db.String(45), nullable=True)
     address3 = db.Column(db.String(45), nullable=True)
@@ -97,9 +99,23 @@ class Property(db.Model):
     background_contact = db.Column(db.String(100), nullable=True)
     background_contact_phone = db.Column(db.String(100), nullable=True)
     background_explore = db.Column(db.String(100), nullable=True)
-    domain = db.Column(db.String(100), nullable=True)
+    domain = db.Column(db.String(100), unique=True, nullable=True)
     property_number = db.Column(db.String(45), nullable=True)
     floors = db.Column(db.String(45), nullable=True)
     list_date_English = db.Column(db.String(45), nullable=True)
     school_district_English = db.Column(db.String(45), nullable=True)
     school_district_Chinese = db.Column(db.String(45), nullable=True)
+    created_on = db.Column(db.DateTime, nullable=True)
+    updated_on = db.Column(db.DateTime, nullable=True)
+    gallerys = db.Column(db.String(300), nullable=True)
+    slideshows = db.Column(db.String(300), nullable=True)
+
+
+    def __init__(self, idproperty, address1, address3, agent_id, domain, address2=""):
+        self.idproperty = idproperty
+        self.address1 = address1
+        self.address2 = address2
+        self.address3 = address3
+        self.agent_id = agent_id
+        self.domain = domain
+        self.created_on = datetime.datetime.now()

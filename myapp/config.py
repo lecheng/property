@@ -77,7 +77,7 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     """Production configuration."""
-    DEBUG = False
+    DEBUG = True
     DEBUG_TB_ENABLED = False
 
     SECRET_KEY = None

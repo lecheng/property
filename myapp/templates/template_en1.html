@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>
+
+{{ full_address }}
+
+</title>
+<meta name="description" content=
+
+{{ full_address }}
+
+/>
+<meta name="keywords" content="real estate, mls listing" />
+<meta name="author" content="The House Club" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+<!-- LOAD JQUERY LIBRARY -->
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/jquery.js')}}"></script>
+
+<!-- LOADING FONTS AND ICONS -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='example/public/assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='example/public/assets/fonts/font-awesome/css/font-awesome.min.css')}}">
+
+<!-- REVOLUTION STYLE SHEETS -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='example/public/assets/css/settings.css')}}" media="screen">
+<!-- REVOLUTION LAYERS STYLES -->
+<style type="text/css">  #slideshow_wrapper .tp-loader.spinner2{ background-color: #FFFFFF !important; } </style>
+<style type="text/css">  #discover_wrapper .tp-loader.spinner2{ background-color: #FFFFFF !important; } </style>
+<style type="text/css"> sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline;top: -0.5em;} iframe {border: 0;} </style>
+
+<!-- REVOLUTION JS FILES -->
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/jquery.themepunch.tools.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/jquery.themepunch.revolution.min.js')}}"></script>
+
+
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.migration.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/extensions/revolution.extension.video.min.js')}}"></script>
+
+</head>
+
+<body style="margin-top:0px;margin-bottom:1px;background-color:#eeeeee;">
+
+<div id="slideshow_wrapper" class="rev_slider_wrapper fullscreen-container" style="background-color:#000000;">
+<!-- START REVOLUTION SLIDER 5.2.5.4 fullscreen mode -->
+<div id="slideshow" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.2.5.4"><ul>
+
+<!-- SLIDE  -->
+<li data-index="slideshow-1" data-transition="fade" data-title="Slideshow 1" data-masterspeed="300" data-delay="5000">
+<!-- MAIN IMAGE -->
+<img src="{{ url_for('static', filename= slideshows[0])}}"
+
+data-bgposition="center center" data-bgfit="cover" data-bgparallax="8" class="rev-slidebg" data-no-retina>
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-layer-selectable" id="slideshow-1-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:0;e:Linear.easeNone;" data-style_hover="c:rgba(255, 255, 255, 1.00);bg:rgba(0, 0, 0, 1.00);" data-transform_in="y:20px;opacity:0;s:1500;e:Power1.easeOut;" data-transform_out="y:-20px;opacity:0;s:300;e:Power2.easeInOut;" data-start="2000" data-responsive_offset="off" style="z-index:1;white-space:nowrap;color:rgba(255,255,255,1.00);font-size:40px;line-height:1.25;font-weight:300;font-family:sans-serif;padding:30px 30px 30px 30px;text-align:center;background-color:rgba(0,0,0,0.50);cursor:text;">
+
+{{ full_address }}
+
+</div></li>
+
+      <!-- SLIDE  -->
+     <!--  <li data-index="slideshow-2" data-transition="fade" data-title="Slideshow 1" data-masterspeed="300">
+
+        <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" data-lazyload="{{ url_for('static', filename='example/assets/slideshow_4.jpg')}}" data-bgposition="center center" data-bgfit="cover" data-bgparallax="8" class="rev-slidebg" data-no-retina>
+        </li> -->
+
+      <!-- SLIDE  -->
+      <!-- <li data-index="slideshow-2" data-transition="fade" data-title="Slideshow 1" data-masterspeed="300">
+
+        <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" data-lazyload="{{ url_for('static', filename='example/assets/slideshow_5.jpg')}}" data-bgposition="center center" data-bgfit="cover" data-bgparallax="8" class="rev-slidebg" data-no-retina>
+
+        </li> -->
+
+        {% for i in range(1,slideshows|count) %}
+        <!-- SLIDE  -->
+              <li data-index="slideshow-2" data-transition="fade" data-title="Slideshow 1" data-masterspeed="300">
+                <!-- MAIN IMAGE -->
+                <img src="{{ url_for('static',filename=slideshows[i])}}" data-bgposition="center center" data-bgfit="cover" data-bgparallax="8" class="rev-slidebg" data-no-retina>
+                <!-- LAYERS --></li>
+        {% endfor %}
+
+</ul>
+
+<div class="tp-static-layers">
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-layer-selectable tp-static-layer" id="slideshow-static-layer-1" data-x="['left','left','left','left']" data-hoffset="['40','30','20','10']" data-y="['top','top','top','top']" data-voffset="['40','30','20','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:0;e:Linear.easeNone;" data-style_hover="c:rgba(255, 255, 255, 1.00);bg:rgba(0, 0, 0, 1.00);" data-transform_in="y:20px;opacity:0;s:1500;e:Power1.easeOut;" data-transform_out="y:-20px;opacity:0;s:300;e:Power2.easeInOut;" data-start="300" data-basealign="slide" data-responsive_offset="on" data-startslide="1" style="z-index:1;white-space:nowrap;color:rgba(255,255,255,1.00);font-size:20px;line-height:1.25;font-weight:300;font-family:sans-serif;padding:10px 10px 10px 10px;text-align:center;background-color:rgba(0,0,0,0.50);cursor:text;">
+
+{{ full_address }}
+
+</div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption tp-static-layer" id="slideshow-static-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['20','20','20','20']" data-width="none" data-height="none" data-whitespace="nowrap" data-visibility="['on','on','on','on']" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:0;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 1.00);bg:rgba(10, 10, 10, 1.00);" data-transform_in="y:20px;opacity:0;s:1500;e:Power1.easeOut;" data-transform_out="y:-20px;opacity:0;s:300;e:Power2.easeInOut;" data-start="2000" data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" style="z-index: 1000; white-space: nowrap; font-size: 40px; line-height: 1; font-weight:300; color: rgba(255, 255, 255, 1.00);text-align:center;background-color:rgba(10, 10, 10, 0.50);cursor:pointer;"><div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="-5" data-ye="5"> <i class="pe-7s-angle-down"></i></div></div></div>
+
+<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div></div></div>
+<!-- END REVOLUTION SLIDER -->
+
+
+
+
+
+<div id="slogan_wrapper" class="rev_slider_wrapper fullwidthbanner-container" >
+<!-- START REVOLUTION SLIDER 5.2.5.4 fullwidth mode -->
+<div id="slogan" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.2.5.4"><ul>
+
+<!-- SLIDE  -->
+<li data-index="rs-6" data-transition="fade"   data-title="Slogan" >
+<!-- MAIN IMAGE -->
+<!-- <img src="../assets/transparent.png" > -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-6-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['30','30','30','30']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:10px;opacity:0;s:800;e:Power4.easeOut;" data-transform_out="opacity:0;s:300;" data-start="0" data-responsive_offset="on" style="z-index:1;white-space:nowrap;font-size:30px;line-height:1.25;font-weight:300;color:rgba(69,69,69,1.00);font-family:sans-serif;">
+
+{{ property.slogan_title_English }}
+
+</div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-6-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['70','70','70','70']" data-width="['none','none','480','360']" data-height="none" data-whitespace="['nowrap','nowrap','normal','normal']" data-transform_idle="o:1;" data-transform_in="y:10px;opacity:0;s:800;e:Power4.easeOut;"  data-transform_out="opacity:0;s:300;" data-start="100" data-responsive_offset="on" style="z-index:1;white-space:nowrap;font-size:20px;line-height:1.25;font-weight:300;color:rgba(136,136,136,1.00);font-family:sans-serif;text-align:center;">
+
+{{ property.slogan_subtitle_English }}
+
+</div></li></ul>
+
+<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div></div></div>
+<!-- END REVOLUTION SLIDER -->
+
+
+
+
+
+
+
+
+
+<div id="discover_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
+<!-- START REVOLUTION SLIDER 5.2.5.4 fullwidth mode -->
+<div id="discover" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.2.5.4"><ul>
+
+<!-- SLIDE  -->
+<li data-index="rs-7" data-transition="fade"   data-title="Grid" >
+<!-- MAIN IMAGE -->
+<!-- <img src="{{ url_for('static', filename='example/assets/dummy.png')}}"> -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<a class="tp-caption tp-resizeme  ddd_mousebox tp-rs-menulink" href="#discover" target="_self" id="rs-7-layer-1" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','20']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="250" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-8","delay":""}]' data-responsive_offset="on" style="z-index:1;cursor:pointer;"><img draggable="false" data-ww="['390px','321px','239px','390px']" data-hh="['340px','280px','208px','340px']" src=
+
+"{{ url_for('static', filename=property.grid_overview )}}"
+
+
+data-no-retina></a>
+
+<!-- LAYER NR. 2 -->
+<a class="tp-caption tp-resizeme  ddd_mousebox tp-rs-menulink" href="#discover" target="_self" id="rs-7-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','-1','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','370']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="350" data-actions='[{"event":"click","action":"jumptoslide","slide":"g-0","delay":""}]' data-responsive_offset="on" style="z-index:1;cursor:pointer;"><img draggable="false" data-ww="['390px','321px','239px','390px']" data-hh="['340px','280px','208px','340px']" src=
+
+"{{ url_for('static', filename=property.grid_gallery) }}"
+
+data-no-retina></a>
+
+<!-- LAYER NR. 3 -->
+<a class="tp-caption tp-resizeme  ddd_mousebox tp-rs-menulink" href="#discover" target="_self" id="rs-7-layer-3" data-x="['right','right','right','center']" data-hoffset="['20','20','21','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','720']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="450" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-15","delay":""}]' data-responsive_offset="on" style="z-index:1;cursor:pointer;"><img draggable="false" data-ww="['390px','321px','239px','390px']" data-hh="['695px','570px','426px','695px']" src=
+
+"{{ url_for('static', filename=property.grid_contact) }}"
+
+data-no-retina> </a>
+
+<!-- LAYER NR. 4 -->
+<a class="tp-caption tp-resizeme  ddd_mousebox tp-rs-menulink" href="#discover" target="_self" id="rs-7-layer-4" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['375','311','237','1425']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="550" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-14","delay":""}]' data-responsive_offset="on" style="z-index:1;cursor:pointer;"><img draggable="false" data-ww="['795px','653px','488px','390px']" data-hh="['340px','280px','209px','167px']" src=
+
+"{{ url_for('static', filename= property.grid_explore )}}"
+
+data-no-retina> </a>
+
+<!-- LAYER NR. 5 -->
+<div class="tp-caption tp-resizeme  nopointerevent" id="rs-7-layer-5" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['174','144','112','174']" data-fontsize="['20','20','18','25']" data-lineheight="['30','30','25','30']" data-width="['390','321','239','390']" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:25px;opacity:0;s:800;e:Power4.easeOut;" data-transform_out="y:-25px;opacity:0;s:500;e:Power3.easeInOut;" data-start="550" data-responsive_offset="on" style="z-index: 2; min-width: 390px; max-width: 390px; white-space: nowrap; font-size: 20px; line-height: 30px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;text-align:center;">OVERVIEW </div>
+
+<!-- LAYER NR. 6 -->
+<div class="tp-caption tp-resizeme  nopointerevent" id="rs-7-layer-6" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['174','144','112','525']" data-fontsize="['20','20','18','25']" data-lineheight="['30','30','25','30']" data-width="['390','321','239','390']" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:25px;opacity:0;s:800;e:Power4.easeOut;" data-transform_out="y:-25px;opacity:0;s:500;e:Power3.easeInOut;" data-start="650" data-responsive_offset="on" style="z-index: 2; min-width: 390px; max-width: 390px; white-space: nowrap; font-size: 20px; line-height: 30px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;text-align:center;">VIEW GALLERY </div>
+
+<!-- LAYER NR. 7 -->
+<!-- <div class="tp-caption tp-resizeme  nopointerevent" id="rs-7-layer-7" data-x="['right','right','right','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['352','291','220','1045']" data-fontsize="['20','20','18','25']" data-lineheight="['30','30','25','30']" data-width="['390','321','239','390']" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:25px;opacity:0;s:800;e:Power4.easeOut;" data-transform_out="y:-25px;opacity:0;s:500;e:Power3.easeInOut;" data-start="750" data-responsive_offset="on" style="z-index: 2; min-width: 390px; max-width: 390px; white-space: nowrap; font-size: 20px; line-height: 30px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;text-align:center;">GET IN TOUCH </div> -->
+
+<!-- LAYER NR. 8 -->
+<div class="tp-caption tp-resizeme  nopointerevent" id="rs-7-layer-8" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['529','435','329','1493']" data-fontsize="['20','20','18','25']" data-lineheight="['30','30','25','30']" data-width="['795','653','488','390']" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:25px;opacity:0;s:800;e:Power4.easeOut;" data-transform_out="y:-25px;opacity:0;s:500;e:Power3.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2; min-width: 795px; max-width: 795px; white-space: nowrap; font-size: 20px; line-height: 30px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;text-align:center;">EXPLORE NEARBY </div></li>
+
+<!-- SLIDE  -->
+<li data-index="rs-8" data-transition="fade"   data-invisible="true"  data-title="Detail" >
+<!-- MAIN IMAGE -->
+<!-- <img src="{{ url_for('static', filename='example/assets/dummy.png')}}"> -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-resizeme" id="rs-8-layer-1" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','20']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:10px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 1;"><img draggable="false" data-ww="['1200px','984px','738px','1200px']" data-hh="['695px','570px','427px','695px']" src=
+
+"{{ url_for('static', filename=property.background_overview )}}"
+
+data-no-retina> </div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption tp-resizeme" id="rs-8-layer-2" data-x="['right','right','right','right']" data-hoffset="['10','10','10','-10']" data-y="['top','top','top','top']" data-voffset="['10','10','10','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="x:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-7","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-close"></i> </div>
+
+<!-- LAYER NR. 3 -->
+<div class="tp-caption tp-resizeme" id="rs-8-layer-3" data-x="['center','center','center','center']" data-hoffset="['50','50','50','50']" data-y="['top','top','top','top']" data-voffset="['625','500','357','625']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-9","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-angle-right"></i> </div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-8-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['118','108','98','98']" data-fontsize="['70','60','50','50']" data-lineheight="['70','60','50','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 70px; line-height: 70px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;">DETAILS </div>
+
+<!-- LAYER NR. 5 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-8-layer-5" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-fontsize="['20','20','18','20']" data-lineheight="['25','25','22','25']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 20px; line-height: 25px; font-weight:300; color: rgba(255, 255, 255, 0.85);font-family:sans-serif;">List Price:<br>Beds:<br>Baths:<br>Sq. Ft.:<br>Lot Size:<br>Year Built:<br>Property Type:<br>List Date:<br>School District:</div>
+
+<!-- LAYER NR. 6 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-8-layer-6" data-x="['left','left','left','left']" data-hoffset="['200','190','170','160']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-fontsize="['20','20','18','20']" data-lineheight="['25','25','22','25']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 10; white-space: nowrap; font-size: 20px; line-height: 25px; font-weight:300; color: rgba(255, 255, 255, 0.85);font-family:sans-serif;">
+
+{{ property.price }}<br>{{ property.beds }}<br>{{ property.baths }}<br>{{ property.home_size }}<br>{{ property.lot_size }}<br>{{ property.year_built }}<br>{{ property.property_type_English }}<br>{{ property.list_date_English }}<br>{{ property.school_district_English }}<br>
+
+</div></li>
+
+<!-- SLIDE  -->
+<li data-index="rs-9" data-transition="fade"   data-invisible="true"  data-title="Description" >
+<!-- MAIN IMAGE -->
+<!-- <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" style='background-color:#eeeeee'> -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-resizeme" id="rs-9-layer-1" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','20']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:10px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 1;"><img draggable="false" data-ww="['1200px','984px','738px','1200px']" data-hh="['695px','570px','427px','695px']" src=
+
+"{{ url_for('static', filename=property.background_overview )}}"
+
+data-no-retina> </div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption tp-resizeme" id="rs-9-layer-2" data-x="['right','right','right','right']" data-hoffset="['10','10','10','-10']" data-y="['top','top','top','top']" data-voffset="['10','10','10','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="x:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-7","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-close"></i> </div>
+
+<!-- LAYER NR. 3 -->
+<div class="tp-caption tp-resizeme" id="rs-9-layer-3" data-x="['center','center','center','center']" data-hoffset="['-50','-50','-50','-50']" data-y="['top','top','top','top']" data-voffset="['625','500','357','625']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-8","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-angle-left"></i> </div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-9-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['118','108','98','98']" data-fontsize="['70','60','50','50']" data-lineheight="['70','60','50','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 70px; line-height: 70px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;">DESCRIPTION </div>
+
+<!-- LAYER NR. 5 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-9-layer-5" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-fontsize="['20','17','14','16']" data-lineheight="['25','21','18','20']" data-width="['747','616','698','420']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 9; min-width: 747px; max-width: 747px; white-space: normal; font-size: 20px; line-height: 25px; font-weight:300; color: rgba(255, 255, 255, 0.85);font-family:sans-serif;">
+
+{{ property.description_English }}
+
+</div>
+</li>
+{% if property.vimeo %}
+{% set attribute = "data-vimeoid" %}
+{% set videoid = property.vimeo %}
+{% elif property.youtube %}
+{% set attribute = "data-ytid" %}
+{% set videoid = property.youtube %}
+{% else %}
+{% set videoid = "" %}
+{% endif %}
+      {% if videoid %}
+      <!-- SLIDE  -->
+      <li data-index="g-0" data-transition="fade"   data-invisible="true"  data-title="Gallery" >
+        <!-- MAIN IMAGE -->
+        <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" style='background-color:#424242'>
+        <!-- LAYERS -->
+
+        <!-- LAYER NR. 1 -->
+        <div class="tp-caption tp-resizeme tp-videolayer" id="g-0-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','228.5']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:10px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" {{attribute}}={{videoid}} data-videoattributes="" data-videowidth="['1200px','984px','738px','480px']" data-videoheight="['695px','570px','427px','278px']" data-videoloop="none" data-autoplay="off" data-volume="100" style="z-index: 1;"> </div>
+
+        <!-- LAYER NR. 2 -->
+        <div class="tp-caption tp-resizeme" id="g-0-layer-2" data-x="['right','right','right','right']" data-hoffset="['10','10','10','-10']" data-y="['top','top','top','top']" data-voffset="['10','10','10','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="x:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-7","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-close"></i> </div>
+
+        <!-- LAYER NR. 3 -->
+        <div class="tp-caption tp-resizeme" id="g-0-layer-3" data-x="['center','center','center','center']" data-hoffset="['50','50','50','50']" data-y="['top','top','top','top']" data-voffset="['625','500','357','625']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-start="0" data-actions='[{"event":"click","action":"jumptoslide","slide":"g-1","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-angle-right"></i> </div>
+
+        <!-- LAYER NR. 4 -->
+        <div class="tp-caption tp-resizeme" id="g-0-layer-4" data-x="['center','center','center','center']" data-hoffset="['-50','-50','-50','-50']" data-y="['top','top','top','top']" data-voffset="['625','500','357','625']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-start="0" data-actions='[{"event":"click","action":"jumptoslide","slide":"g-3","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-angle-left"></i> </div></li>
+        {% endif %}
+{% for i in range(0,gallerys|count) %}
+{% if i==0 and videoid %}
+{% set i=i+1 %}
+{% endif %}
+      <!-- SLIDE  -->
+      <li data-index="g-{{i}}" data-transition="fade"   data-invisible="true"  data-title="Gallery" >
+        <!-- MAIN IMAGE -->
+        <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" style='background-color:#424242'>
+        <!-- LAYERS -->
+
+        <!-- LAYER NR. 1 -->
+        <div class="tp-caption tp-resizeme" id="g-{{i}}-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','232.7']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:10px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 1;"><img  data-ww="['1200px','984px','738px','480px']" data-hh="['674px','552.68px','414.51px','269.6px']" src="{{ url_for('static', filename=gallerys[i] )}}" data-no-retina> </div>
+
+        <!-- LAYER NR. 2 -->
+        <div class="tp-caption tp-resizeme" id="g-{{i}}-layer-2" data-x="['right','right','right','right']" data-hoffset="['10','10','10','-10']" data-y="['top','top','top','top']" data-voffset="['10','10','10','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="x:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-7","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-close"></i> </div>
+
+        <!-- LAYER NR. 3 -->
+        {% if i+1 == gallerys|count %}
+        {% set next = 0 %}
+        {% else %}
+        {% set next = i+1 %}
+        {% endif %}
+        <div class="tp-caption tp-resizeme" id="g-{{i}}-layer-3" data-x="['center','center','center','center']" data-hoffset="['50','50','50','50']" data-y="['top','top','top','top']" data-voffset="['625','500','357','625']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-start="0" data-actions='[{"event":"click","action":"jumptoslide","slide":"g-{{next}}","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-angle-right"></i> </div>
+
+        {% if i == 0 %}
+        {% set prev = gallerys|count-1 %}
+        {% else %}
+        {% set prev = i-1 %}
+        {% endif %}
+        <!-- LAYER NR. 4 -->
+        <div class="tp-caption tp-resizeme" id="g-{{i}}-layer-4" data-x="['center','center','center','center']" data-hoffset="['-50','-50','-50','-50']" data-y="['top','top','top','top']" data-voffset="['625','500','357','625']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-start="0" data-actions='[{"event":"click","action":"jumptoslide","slide":"g-{{prev}}","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-angle-left"></i> </div></li>
+
+        {% endfor %}
+
+
+<!-- SLIDE  -->
+<li data-index="rs-14" data-transition="fade"   data-invisible="true"  data-title="Explore" >
+<!-- MAIN IMAGE -->
+<!-- <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" style='background-color:#eeeeee'> -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-resizeme" id="slide-14-layer-1" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','20']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 1;"><img draggable="false" data-ww="['1200px','984px','738px','1200px']" data-hh="['695px','570px','427px','695px']" src=
+
+"{{ url_for('static', filename= property.background_explore )}}"
+
+data-no-retina> </div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption tp-resizeme" id="rs-14-layer-2" data-x="['right','right','right','right']" data-hoffset="['10','10','10','-10']" data-y="['top','top','top','top']" data-voffset="['10','10','10','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="x:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-7","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-close"></i> </div>
+
+<!-- LAYER NR. 3 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-14-layer-3" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['118','108','98','98']" data-fontsize="['70','60','50','50']" data-lineheight="['70','60','50','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 70px; line-height: 70px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;">EXPLORE </div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption" id="rs-14-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-visibility="['on','off','off','off']" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2"><iframe src=
+
+"https://www.google.com/maps/embed/v1/place?key=AIzaSyCDV3pj4XCo2e5x9XqNE7HYCyV3m0u-qsA&q={{ full_address }}"
+
+width="1100" height="480" frameborder="0" style="border:0" allowfullscreen></iframe> </div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption" id="rs-14-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-visibility="['off','on','off','off']" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2"><iframe src=
+
+"https://www.google.com/maps/embed/v1/place?key=AIzaSyCDV3pj4XCo2e5x9XqNE7HYCyV3m0u-qsA&q={{ full_address }}"
+
+width="900" height="380" frameborder="0" style="border:0" allowfullscreen></iframe> </div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption" id="rs-14-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-visibility="['off','off','on','off']" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2"><iframe src=
+
+"https://www.google.com/maps/embed/v1/place?key=AIzaSyCDV3pj4XCo2e5x9XqNE7HYCyV3m0u-qsA&q={{ full_address }}"
+
+width="670" height="270" frameborder="0" style="border:0" allowfullscreen></iframe> </div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption" id="rs-14-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-visibility="['off','off','off','on']" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2"><iframe src=
+
+"https://www.google.com/maps/embed/v1/place?key=AIzaSyCDV3pj4XCo2e5x9XqNE7HYCyV3m0u-qsA&q={{ full_address }}"
+
+width="420" height="535" frameborder="0" style="border:0" allowfullscreen></iframe> </div></li>
+
+<!-- SLIDE  -->
+<li data-index="rs-15" data-transition="fade"   data-invisible="true"  data-title="Contact" >
+<!-- MAIN IMAGE -->
+<!-- <img src="{{ url_for('static', filename='example/assets/dummy.png')}}" style='background-color:#eeeeee'> -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption tp-resizeme" id="rs-15-layer-1" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','20']" data-visibility="['on','on','on','off']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 1;"><img draggable="false" data-ww="['1200px','984px','738px','1200px']" data-hh="['695px','570px','427px','695px']" src=
+
+"{{ url_for('static', filename= property.background_contact )}}"
+
+data-no-retina> </div>
+
+<!-- LAYER NR. 1.1 -->
+<div class="tp-caption tp-resizeme" id="rs-15-layer-1.1" data-x="['left','left','left','center']" data-hoffset="['20','20','20','0']" data-y="['top','top','top','top']" data-voffset="['20','20','20','20']" data-visibility="['off','off','off','on']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 1;"><img src="{{ url_for('static', filename='example/assets/dummy.png')}}"  draggable="false" data-ww="['480px','480px','480px','480px']" data-hh="['695px','695px','695px','695px']" data-lazyload=
+
+"{{ url_for('static', filename= property.background_contact_phone )}}"
+
+data-no-retina> </div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption tp-resizeme" id="rs-15-layer-2" data-x="['right','right','right','right']" data-hoffset="['10','10','10','-10']" data-y="['top','top','top','top']" data-voffset="['10','10','10','10']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 0.75);" data-transform_in="x:20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-7","delay":""}]' data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 100px; line-height: 100px; color: rgba(255, 255, 255, 1.00);cursor:pointer;"><i class="pe-7s-close"></i> </div>
+
+<!-- LAYER NR. 3 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-15-layer-3" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['118','108','98','98']" data-fontsize="['70','60','50','50']" data-lineheight="['70','60','50','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="750" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 70px; line-height: 70px; font-weight:300; color: rgba(255, 255, 255, 1.00);font-family:sans-serif;">
+
+{{ agent.agent_name }}
+
+</div>
+
+<!-- LAYER NR. 4 -->
+<div class="tp-caption tp-resizeme" id="rs-15-layer-4" data-x="['left','left','left','left']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 20px; line-height: 1.4em; font-weight:300; color: rgba(255, 255, 255, 0.85);font-family:sans-serif;text-align:center;"><i class="fa fa-user"></i><br><i class="fa fa-phone"></i><br><i class="fa fa-phone-square"></i><br><i class="fa fa-wechat"></i><br><i class="fa fa-envelope"></i><br><i class="fa fa-building"></i> </div>
+
+<!-- LAYER NR. 5 -->
+<div class="tp-caption tp-layer-selectable  tp-resizeme" id="rs-15-layer-5" data-x="['left','left','left','left']" data-hoffset="['90','80','70','50']" data-y="['top','top','top','top']" data-voffset="['198','178','158','158']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:-20px;opacity:0;s:1000;e:Power4.easeOut;" data-transform_out="auto:auto;s:500;e:Power2.easeInOut;" data-start="850" data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 20px; line-height: 1.4em; font-weight:300; color: rgba(255, 255, 255, 0.85);font-family:sans-serif;">
+
+{{ agent.agent_license }}<br>{{ agent.agent_phone }}<br>{{ agent.agent_phone_china }}<br>{{ agent.agent_wechat }}<br>{{ agent.agent_email }}<br>{{ agent.agent_office }}
+</div>
+
+<!-- LAYER NR. 6 -->
+<div class="tp-caption tp-resizeme" id="rs-15-layer-6" data-x="['right','right','right','right']" data-hoffset="['60','50','40','20']" data-y="['top','top','top','top']" data-voffset="['575','460','327','595']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="opacity:0;s:300;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;" data-start="850" data-responsive_offset="on" style="z-index: 3;"><img draggable="false" data-ww="['100px','100px','100px','100px']" data-hh="['100px','100px','100px','100px']" src=
+
+"{{ url_for('static', filename=agent.agent_qrcode )}}"
+
+data-no-retina> </div></li></ul>
+
+<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div></div></div>
+<!-- END REVOLUTION SLIDER -->
+
+
+
+<div id="footer_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="footer">
+<!-- START REVOLUTION SLIDER 5.2.5.4 fullwidth mode -->
+<div id="footer" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.2.5.4"><ul>
+<!-- SLIDE  -->
+<li data-index="rs-16" data-transition="fade"   data-title="footer" >
+<!-- MAIN IMAGE -->
+<!-- <img src="../assets/transparent.png" style='background-color:#eeeeee'> -->
+<!-- LAYERS -->
+
+<!-- LAYER NR. 1 -->
+<div class="tp-caption   tp-resizeme" id="rs-16-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-start="0" data-responsive_offset="on" style="z-index: 1; white-space: nowrap; font-size: 20px; line-height: 20px; font-weight:300; color: rgba(136, 136, 136, 1.00);font-family:sans-serif;cursor:default;">|</div>
+
+<!-- LAYER NR. 2 -->
+<div class="tp-caption   tp-resizeme" id="rs-16-layer-2" data-x="['center','center','center','center']" data-hoffset="['-50','-50','-50','-50']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-start="0" data-responsive_offset="on" style="z-index: 1; white-space: nowrap; font-size: 16px; line-height: 20px; font-weight:300; color: rgba(136, 136, 136, 1.00);font-family:sans-serif;cursor:default;">English</div>
+
+<!-- LAYER NR. 3 -->
+<div class="tp-caption   tp-resizeme" id="rs-16-layer-3" data-x="['center','center','center','center']" data-hoffset="['40','40','40','40']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:150;e:Linear.easeNone;" data-style_hover="c:rgba(0, 0, 0, 1.00);" data-start="0" data-actions='[{"event":"click","action":"simplelink","target":"_self","url":"cn","delay":""}]'data-responsive_offset="on" style="z-index: 2; white-space: nowrap; font-size: 16px; line-height: 20px; font-weight:300; color: rgba(136, 136, 136, 1.00);font-family:sans-serif;cursor:pointer;">中文</div></li></ul>
+
+<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div></div></div>
+<!-- END REVOLUTION SLIDER -->
+<script type="text/javascript" src="{{ url_for('static', filename='example/public/assets/js/template.js')}}"></script>
+</body>
+</html>

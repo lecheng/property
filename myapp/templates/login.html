@@ -17,7 +17,7 @@
         <h2>房产网站生成平台</h2>
     </div>
     <div class="col-xs-4 col-xs-offset-4 box">
-        <form action="/login/" role="form" method="GET">
+        <form action="/login" role="form" method="POST">
             <ul>
                 <li>
                     <div class="input-group">
@@ -45,8 +45,31 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <div class="col-xs-12">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                 
+                        {% for message in messages %}
+                            {% if "Error" not in message[1]: %}
+                                <div class="alert alert-info">
+                                <strong>Success! </strong> {{ message[1] }}
+                                </div>
+                            {% endif %}
+                 
+                            {% if "Error" in message[1]: %}
+                                <div class="alert alert-warning">
+                                {{ message[1] }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </li>
             </ul>
         </form>
+        
     </div>
     <!-- Modal -->
     <div id="registerModal" class="modal fade" role="dialog">
@@ -58,7 +81,7 @@
                     <h4 class="modal-title">注册</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/register/" role="form">
+                    <form id="registerForm" action="/register" role="form" method="POST">
                         <ul>
                             <li>
                                 <div class="input-group">
@@ -75,18 +98,18 @@
                             <li>
                                 <div class="input-group">
                                     <span class="input-group-addon green-bg green-border glyphicon glyphicon-lock" style="top:0px;" id="basic-addon1"></span>
-                                    <input name="r_password" type="password" class="form-control green-border" placeholder="请填入你的密码" aria-describedby="basic-addon1" required>
+                                    <input id="r_password" name="r_password" type="password" class="form-control green-border" placeholder="请填入你的密码" aria-describedby="basic-addon1" required>
                                 </div>
                             </li>
                             <li>
                                 <div class="input-group">
                                     <span class="input-group-addon green-bg green-border glyphicon glyphicon-lock" style="top:0px;" id="basic-addon7"></span>
-                                    <input name="r_password_confirm" type="password" class="form-control green-border" placeholder="请再次输入你的密码" aria-describedby="basic-addon7" required>
+                                    <input id="r_password_confirm" name="r_password_confirm" type="password" class="form-control green-border" placeholder="请再次输入你的密码" aria-describedby="basic-addon7" required>
                                 </div>
                             </li>
                             <li>
                             <div class="col-xs-12 btng">
-                                <input type="submit" value="注册" class="btn ss">
+                                <input id="register-button" type="submit" value="注册" class="btn ss">
                             </div>
                             </li>
                         </ul>
@@ -96,24 +119,6 @@
 
                 </div>
                 <br>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
- 
-        {% for message in messages %}
-            {% if "Error" not in message[1]: %}
-                <div class="alert alert-info">
-                <strong>Success! </strong> {{ message[1] }}
-                </div>
-            {% endif %}
- 
-            {% if "Error" in message[1]: %}
-                <div class="alert alert-warning">
-                {{ message[1] }}
-                </div>
-            {% endif %}
-        {% endfor %}
-            {% endif %}
-        {% endwith %}
             </div>
 
         </div>
@@ -153,6 +158,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{url_for('static', filename='assets/js/ng-login.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='assets/js/login.js')}}"></script>
 </body>
 </html>

@@ -32,7 +32,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 
 #Login
-@agent_blueprint.route('/login/',methods=['POST','GET'])
+@agent_blueprint.route('/login',methods=['POST','GET'])
 # @crossdomain(origin='*')
 def login():
     email = request.args.get('login_email')
@@ -48,7 +48,7 @@ def login():
     return render_template('login.html')
 
 #Logout
-@agent_blueprint.route('/logout/',methods=['GET'])
+@agent_blueprint.route('/logout',methods=['GET'])
 @login_required
 def logout():
     logout_user()
@@ -56,7 +56,7 @@ def logout():
     return redirect(url_for('main.login_page'))
 
 # Register
-@agent_blueprint.route('/register/',methods=['POST','GET'])
+@agent_blueprint.route('/register',methods=['POST'])
 # @crossdomain(origin='*')
 def register():
     form = RegisterForm(request.form)
@@ -68,8 +68,12 @@ def register():
         flash("Email exists!",'danger')
     else:
         agent_id = uuid.uuid4()
-        agent_name = request.args.get('r_name')
-        password = request.args.get('r_password')
+        agent_name = request.form.get('r_name')
+        password = request.form.get('r_password')
+        password_confrim = request.form.get('r_password_confirm')
+        if password != password_confrim:
+            flash("Please confirm your password correctly!","danger")
+            return render_template('login.html')
         agent = Agent(
             agent_name=agent_name,
             agent_email=email,
@@ -102,8 +106,8 @@ def confirm_email(token):
     if agent.agent_email == email:
         agent.confirmed = True
         agent.confirmed_on = datetime.datetime.now()
-        mkdir('myapp/static/assets/img/'+agent.agent_email)
-        mkdir('myapp/static/assets/img/'+agent.agent_email+'/property')
+        mkdir(QRCODE_UPLOAD_FOLDER+agent.agent_email)
+        mkdir(QRCODE_UPLOAD_FOLDER+agent.agent_email+'/property')
         db.session.add(agent)
         db.session.commit()
         flash("You have confirmed your account. Thanks!","success")
@@ -155,13 +159,18 @@ def upload():
     agent = Agent.query.filter_by(agent_email=current_user.agent_email).first()
     file = request.files['qrcode']
     filename = secure_filename(file.filename)
-    filename = agent.agent_name  + '_' + str(int(round(time.time()*1000))) + '_' + filename
     fileurl = 'assets/img/' + agent.agent_email + '/' + filename
     path = os.path.join(*[QRCODE_UPLOAD_FOLDER,agent.agent_email,filename])
     agent.agent_qrcode = fileurl
-    filelist = [f for f in os.listdir(".") if os.path.isfile(f)]
+    folder_path = QRCODE_UPLOAD_FOLDER+agent.agent_email
+    filelist = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+    # print QRCODE_UPLOAD_FOLDER+agent.agent_email
+    # print os.listdir(QRCODE_UPLOAD_FOLDER+agent.agent_email+"/")
+    # print filelist
+
+    # remove existing files
     for f in filelist:
-        os.remove(f)
+        os.remove(os.path.join(folder_path, f))
     file.save(path)
     db.session.add(agent)
     db.session.commit()

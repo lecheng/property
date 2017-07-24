@@ -1,58 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/metro-bootstrap/3.1.1.2/css/metro-bootstrap.min.css" crossorigin="anonymous">
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/metro-bootstrap/3.1.1.2/css/metro-bootstrap.min.css" crossorigin="anonymous">
+{% endblock %}
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-</head>
-<body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="home.html">房产网站生成平台</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 用户名<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="login.html">退出</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+{% block content %}
 <div class="container-fluid">
     <ol class="breadcrumb">
-        <li><a href="home.html">首页</a></li>
-        <li><a href="property.html" class="active">房产管理</a></li>
+        <li><a href="/home">首页</a></li>
+        <li><a href="/property" class="active">房产管理</a></li>
     </ol>
 </div>
 <div class="container-fluid">
     <div class="col-sm-12">
-        <a href="form.html" class="btn btn-default"><i class="fa fa-plus"></i> 添加房产</a>
+        <a href="/property/form" class="btn btn-default"><i class="fa fa-plus"></i> 添加房产</a>
         <div class="panel panel-success" style="margin-top:15px;">
             <div class="panel-heading">
                 <div class="panel-title">房产列表</div>
             </div>
             <div class="panel-body">
+            {% if property_list %}
                 <table class="table table-hover">
                     <thead>
                     <td class="hidden">房产id</td>
@@ -61,19 +29,23 @@
                     <td>网站预览</td>
                     <td>房产详情</td>
                     <td>编辑房产</td>
+                    <td>上传图片</td>
                     <td>删除房产</td>
                     </thead>
                     <tbody>
+                    {% for property in property_list %}
                     <tr>
-                        <td class="hidden">1</td>
-                        <td>1</td>
-                        <td>1223 Oakhaven Rd, Arcadia, CA 91006</td>
-                        <td><a class="btn btn-default"><i class="fa fa-eye"></i></a></td>
-                        <td><a class="btn btn-default"><i class="fa fa-info-circle"></i></a></td>
-                        <td><a href="form.html" class="btn btn-default"><i class="fa fa-edit"></i></a></td>
-                        <td><a class="btn btn-default"><i class="fa fa-trash"></i></a></td>
+                        <td class="hidden">{{ property.idproperty }}</td>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ property.address1 }} {% if property.address2 %},{% endif %} {{ property.address2 }} {% if property.address3 %}, {% endif %} {{ property.address3}}</td>
+                        <td><a class="btn btn-default preview"><i class="fa fa-eye"></i></a></td>
+                        <td><a class="btn btn-default detail"><i class="fa fa-info-circle"></i></a></td>
+                        <td><a class="btn btn-default edit"><i class="fa fa-edit"></i></a></td>
+                        <td><a class="btn btn-default upload-image" data-toggle="modal" data-target="#ImageUploadModal"><i class="fa fa-image"></i></a></td>
+                        <td><a class="btn btn-default delete"><i class="fa fa-trash"></i></a></td>
                     </tr>
-                    <tr>
+                    {% endfor %}
+                    <!-- <tr>
                         <td class="hidden">2</td>
                         <td>2</td>
                         <td>1223 W37th PL, Los Angeles, CA 91006</td>
@@ -81,17 +53,130 @@
                         <td><a class="btn btn-default"><i class="fa fa-info-circle"></i></a></td>
                         <td><a href="form.html" class="btn btn-default"><i class="fa fa-edit"></i></a></td>
                         <td><a class="btn btn-default"><i class="fa fa-trash"></i></a></td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
+                {% else %}
+                <div>尚无房产记录</div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Modal -->
+    <div id="ImageUploadModal" class="modal fade" role="dialog">
+        <div class="modal-dialog container-fluid" style="width:auto;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">上传图片</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Upload Images</h3>
+                            </div>
+                            <div class="panel-body">
+                            <form id="upload-form" enctype=multipart/form-data method="POST">
+                                <div><label>Grid Image</label></div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"OVERVIEW (390*340)"</span><input name="grid-overview" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_overview.jpg');">Grid Image - Overview</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"GALLERY" (390*340)</span><input name="grid-gallery" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_gallery.jpg');">Grid Image - Gallery</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"CONTACT" (390*695)</span><input name="grid-contact" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_contact.jpg');">Grid Image - Contact</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"EXPLORE" (795*340)</span><input name="grid-explore" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_explore.jpg');">Grid Image - Explore</a>)</span>
+                                    </div>
+                                </div>
+                                <div><label>Background Image</label></div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"OVERVIEW (1200*695)"</span><input name="bg-overview" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/background_overview.jpg');">Background Image - Overview</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>CONTACT" (1200*695)</span><input name="bg-contact" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/background_contact.jpg');">Background Image - Contact</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"CONTACT (Phone)" (480*695)</span><input name="bg-contact-phone" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/background_contact_phone.jpg');">Background Image - Contact(Phone)</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>"EXPLORE" (1200*695)</span><input name="bg-explore" type="file" style="display:inline">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/background_explore.jpg');">Background Image - Explore</a>)</span>
+                                    </div>
+                                </div>
+                                <div><label>Slideshow & Gallery</label></div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>Slideshow (1600 wide)</span><input name="slideshow[]" type="file" style="display:inline" multiple>
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/slideshow/slideshow_1.jpg');window.open('./example/slideshow/slideshow_2.jpg');window.open('./example/slideshow/slideshow_3.jpg');window.open('./example/slideshow/slideshow_4.jpg');window.open('./example/slideshow/slideshow_5.jpg');">Slideshow Images</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-sm-8">
+                                        <span>Gallery (1200 wide or 695 tall)</span><input name="gallery[]" type="file" style="display:inline" multiple>
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <span>(eg. <a href="#" onclick="window.open('./example/gallery/gallery_1.jpg');window.open('./example/gallery/gallery_2.jpg');window.open('./example/gallery/gallery_3.jpg');window.open('./example/gallery/gallery_4.jpg');">Gallery Images</a>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 item">
+                                    <div class="col-xs-12 btng">
+                                        <button id="upload-submit" class="btn ss">上传</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    </div>
 </div>
-</body>
-<footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</footer>
-</html>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/property.js')}}"></script>
+{% endblock %}
