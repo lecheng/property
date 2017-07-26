@@ -27,7 +27,7 @@
                     <td>#</td>
                     <td>房产地址</td>
                     <td>网站预览</td>
-                    <td>房产详情</td>
+                    <!-- <td>房产详情</td> -->
                     <td>编辑房产</td>
                     <td>上传图片</td>
                     <td>删除房产</td>
@@ -39,21 +39,12 @@
                         <td>{{ loop.index }}</td>
                         <td>{{ property.address1 }} {% if property.address2 %},{% endif %} {{ property.address2 }} {% if property.address3 %}, {% endif %} {{ property.address3}}</td>
                         <td><a class="btn btn-default preview"><i class="fa fa-eye"></i></a></td>
-                        <td><a class="btn btn-default detail"><i class="fa fa-info-circle"></i></a></td>
+                        <!-- <td><a class="btn btn-default detail"><i class="fa fa-info-circle"></i></a></td> -->
                         <td><a class="btn btn-default edit"><i class="fa fa-edit"></i></a></td>
                         <td><a class="btn btn-default upload-image" data-toggle="modal" data-target="#ImageUploadModal"><i class="fa fa-image"></i></a></td>
                         <td><a class="btn btn-default delete"><i class="fa fa-trash"></i></a></td>
                     </tr>
                     {% endfor %}
-                    <!-- <tr>
-                        <td class="hidden">2</td>
-                        <td>2</td>
-                        <td>1223 W37th PL, Los Angeles, CA 91006</td>
-                        <td><a class="btn btn-default"><i class="fa fa-eye"></i></a></td>
-                        <td><a class="btn btn-default"><i class="fa fa-info-circle"></i></a></td>
-                        <td><a href="form.html" class="btn btn-default"><i class="fa fa-edit"></i></a></td>
-                        <td><a class="btn btn-default"><i class="fa fa-trash"></i></a></td>
-                    </tr> -->
                     </tbody>
                 </table>
                 {% else %}

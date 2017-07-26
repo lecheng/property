@@ -35,8 +35,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 @agent_blueprint.route('/login',methods=['POST','GET'])
 # @crossdomain(origin='*')
 def login():
-    email = request.args.get('login_email')
-    password = request.args.get('login_password')
+    email = request.form.get('login_email')
+    password = request.form.get('login_password')
     agent = Agent.query.filter_by(agent_email=email).first()
     if agent and bcrypt.check_password_hash(
         agent.password, password):
@@ -60,7 +60,7 @@ def logout():
 # @crossdomain(origin='*')
 def register():
     form = RegisterForm(request.form)
-    email = request.args.get('r_email')
+    email = request.form.get('r_email')
     # email = form.email.data
     query = Agent.query.filter_by(agent_email=email).first()
     # return jsonify({"status":form.validate_on_submit()})

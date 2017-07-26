@@ -7,7 +7,7 @@
 import uuid
 import os
 
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request, redirect, url_for, jsonify, flash
 from flask import Blueprint
 from flask_login import current_user
 from flask_login import login_required
@@ -23,6 +23,7 @@ from utils import mkdir
 
 property_blueprint = Blueprint('property', __name__,)
 IMG_UPLOAD_FOLDER = 'myapp/static/assets/img/'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 ################
 #### routes ####
@@ -92,6 +93,7 @@ def property_save():
                 agent_id = current_user.id,
                 idproperty = uuid.uuid4()
             ) 
+        flash('Create success! Please upload images for the property next!','success')
     property_obj.property_number = property_num
     property_obj.price = price_us
     property_obj.beds = beds
@@ -117,9 +119,14 @@ def property_save():
     db.session.commit()
     return redirect(url_for('property.property_list'))
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @property_blueprint.route('/property/upload', methods=['POST'])
 @login_required
 def upload_images():
+    type_error = False
     id = request.args.get('id')
     grid_overview = request.files['grid-overview']
     grid_gallery = request.files['grid-gallery']
@@ -138,6 +145,9 @@ def upload_images():
     # save grid_overview
     filename = secure_filename(grid_overview.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Grid overview file type error! (.png/.jpg/.jpeg allowed!)','danger')
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         property_obj.grid_overview = fileurl
@@ -146,6 +156,10 @@ def upload_images():
     # save grid_gallery
     filename = secure_filename(grid_gallery.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Grid gallery file type error! (.png/.jpg/.jpeg allowed!)','danger')
+        filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         property_obj.grid_gallery = fileurl
@@ -154,6 +168,10 @@ def upload_images():
     # save grid_contact
     filename = secure_filename(grid_contact.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Grid contact file type error! (.png/.jpg/.jpeg allowed!)','danger')
+        filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         grid_contact.save(filepath)
@@ -161,6 +179,10 @@ def upload_images():
 
     # save grid_explore
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Grid explore file type error! (.png/.jpg/.jpeg allowed!)','danger')
+        filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         filename = secure_filename(grid_explore.filename)
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
@@ -170,6 +192,10 @@ def upload_images():
     # save background_overview
     filename = secure_filename(bg_overview.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Background overview file type error! (.png/.jpg/.jpeg allowed!)','danger')
+        filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         bg_overview.save(filepath)
@@ -178,6 +204,9 @@ def upload_images():
     # save background_contact
     filename = secure_filename(bg_contact.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Background contact file type error! (.png/.jpg/.jpeg allowed!)','danger')
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         bg_contact.save(filepath)
@@ -186,6 +215,9 @@ def upload_images():
     # save background_contact_phone
     filename = secure_filename(bg_contact_phone.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Background contact phone file type error! (.png/.jpg/.jpeg allowed!)','danger')
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         bg_contact_phone.save(filepath)
@@ -194,6 +226,9 @@ def upload_images():
     # save background_explore
     filename = secure_filename(bg_explore.filename)
     if filename:
+        if not allowed_file(filename):
+            type_error = True
+            flash('Background explore file type error! (.png/.jpg/.jpeg allowed!)','danger')
         filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
         fileurl = filepath[13:]
         bg_explore.save(filepath)
@@ -204,23 +239,32 @@ def upload_images():
     for gallery in gallerys:
         filename = secure_filename(gallery.filename)
         if filename:
+            if not allowed_file(filename):
+                type_error = True
+                flash('Gallery file type error! (.png/.jpg/.jpeg allowed!)','danger')
             filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
             fileurl += [filepath[13:]]
             gallery.save(filepath)
-    property_obj.gallerys = ",".join(fileurl)
+    if fileurl:
+        property_obj.gallerys = ",".join(fileurl)
 
     # save slideshows
     fileurl = []
     for slideshow in slideshows:
         filename = secure_filename(slideshow.filename)
         if filename:
+            if not allowed_file(filename):
+                type_error = True
+                flash('Slideshow file type error! (.png/.jpg/.jpeg allowed!)','danger')
             filepath = os.path.join(PROPERTY_UPLOAD_FOLDER,filename)
             fileurl += [filepath[13:]]
             slideshow.save(filepath)
-    property_obj.slideshows = ",".join(fileurl)
-    db.session.add(property_obj)
-    db.session.commit()
-    return jsonify({"message":"Upload success!","code":1})
+    if fileurl:
+        property_obj.slideshows = ",".join(fileurl)
+    if not type_error:
+        db.session.add(property_obj)
+        db.session.commit()
+    return redirect(url_for('property.property_list'))
 
 @property_blueprint.route('/property/preview',methods=['GET'])
 def preview():
@@ -229,6 +273,36 @@ def preview():
     slideshows = property_obj.slideshows.split(',')
     gallerys = property_obj.gallerys.split(',')
     full_address = property_obj.address1
+    if not slideshows:
+        flash('Miss slideshows images, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not gallerys:
+        flash('Miss gallerys images, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.grid_overview:
+        flash('Miss grid overview image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.grid_gallery:
+        flash('Miss grid gallery image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.grid_contact:
+        flash('Miss grid contact image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.grid_explore:
+        flash('Miss grid explore image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.background_overview:
+        flash('Miss background overview image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.background_explore:
+        flash('Miss background explore image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.background_contact:
+        flash('Miss background contact image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
+    if not property_obj.background_contact_phone:
+        flash('Miss background contact phone image, please upload images first!','danger')
+        return redirect(url_for('property.property_list'))
     agent = Agent.query.filter_by(id = property_obj.agent_id).first()
     if property_obj.address2:
         full_address = full_address + ', ' + property_obj.address2

@@ -24,8 +24,6 @@ $('a.upload-image').click(function(){
 $('#upload-submit').click(function(){
 	var action = '/property/upload?id=' + property_id;
 	$('#upload-form').attr('action',action).submit();
-	alert("Upload success!");
-	location.href = '/property'
 })
 
 $('a.preview').click(function(){
