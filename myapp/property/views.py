@@ -12,11 +12,12 @@ from flask import Blueprint
 from flask_login import current_user
 from flask_login import login_required
 from werkzeug.utils import secure_filename
+from PIL import Image
 
 
-from myapp.models import Property, Agent
+from myapp.models import Property, Agent, PropertyImage
 from myapp import db
-from utils import mkdir
+from utils import mkdir, voffset_on_phone
 ################
 #### config ####
 ################
@@ -29,105 +30,45 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 #### routes ####
 ################
 
+
+# list properties on property manage page
 @property_blueprint.route('/property')
 @login_required
 def property_list():
-    properties = Property.query.all()
+    properties = Property.query.filter_by(agent_id=current_user.id)
     if not properties:
         flash("Please add your first property!","danger")
     return render_template('property.html', property_list=properties)
 
-@property_blueprint.route('/property/form', methods=['GET'])
+# go to image uploading page
+@property_blueprint.route('/property/images', methods=['GET'])
 @login_required
-def property_form():
-    if 'id' not in request.args:
-        return render_template('form.html', property = {})
+def images_page():
     id = request.args.get('id')
-    property_obj = Property.query.filter_by(idproperty=id).first()
-    return render_template('form.html', property=property_obj)
-
-@property_blueprint.route('/property/save', methods=['POST'])
-@login_required
-def property_save():
-    id = request.form.get('id')
     print id
-    domain = request.form.get('domain')
-    address1 = request.form.get('address1')
-    address2 = request.form.get('address2')
-    address3 = request.form.get('address3')
-    property_num = request.form.get('property-num')
-    price_us = request.form.get('price_us')
-    beds = request.form.get('beds')
-    baths = request.form.get('baths')
-    floors = request.form.get('floors')
-    home_size = request.form.get('home-size')
-    lot_size = request.form.get('lot-size')
-    year = request.form.get('year')
-    property_type_eng = request.form.get('property-type-eng')
-    property_type_chn = request.form.get('property-type-chn')
-    date = request.form.get('date')
-    school_district_eng = request.form.get('school-district-eng')
-    school_district_chn = request.form.get('school-district-chn')
-    sale_state = request.form.get('sale-state')
-    description_eng = request.form.get('description-eng')
-    description_chn = request.form.get('description-chn')
-    vimeo_id = request.form.get('vimeo-id')
-    youtube_id = request.form.get('youtube-id')
-    slogan_title_eng = request.form.get('slogan-title-eng')
-    slogan_subtitle_eng = request.form.get('slogan-subtitle-eng')
-    slogan_title_chn = request.form.get('slogan-title-chn')
-    slogan_subtitle_chn = request.form.get('slogan-subtitle-chn')
-    if id:
-        property_obj = Property.query.filter_by(idproperty=id).first()
-        property_obj.address1 = address1
-        property_obj.address2 = address2
-        property_obj.address3 = address3
-        property_domain = domain
-        flash('Save success! Please upload images for the property next!','success')
-    else:
-        property_obj = Property(
-                address1 = address1,
-                domain = domain,
-                address2 = address2,
-                address3 = address3,
-                agent_id = current_user.id,
-                idproperty = uuid.uuid4()
-            ) 
-        flash('Create success! Please upload images for the property next!','success')
-    property_obj.property_number = property_num
-    property_obj.price = price_us
-    property_obj.beds = beds
-    property_obj.baths = baths
-    property_obj.home_size = home_size
-    property_obj.lot_size = lot_size
-    property_obj.year_built = year
-    property_obj.property_type_English = property_type_eng
-    property_obj.property_type_Chinese = property_type_chn
-    property_obj.description_English = description_eng
-    property_obj.description_Chinese = description_chn
-    property_obj.slogan_subtitle_English = slogan_subtitle_eng
-    property_obj.slogan_title_English = slogan_title_eng
-    property_obj.slogan_subtitle_Chinese = slogan_subtitle_chn
-    property_obj.slogan_title_Chinese = slogan_title_chn
-    property_obj.vimeo = vimeo_id
-    property_obj.youtube = youtube_id
-    property_obj.floors = floors
-    property_obj.list_date_English = date
-    property_obj.school_district_English = school_district_eng
-    property_obj.school_district_Chinese = school_district_chn
-    db.session.add(property_obj)
-    db.session.commit()
-    return redirect(url_for('property.property_list'))
+    property_obj = PropertyImage.query.filter_by(property_id=id).first()
+    if not property_obj:
+        return render_template('images.html', property_id=id, property=None, slideshows=[], gallerys=[])
+    slideshows = []
+    gallerys = []
+    if property_obj.slideshows:
+        slideshows = property_obj.slideshows.split(',')
+    if property_obj.gallerys:
+        gallerys = property_obj.gallerys.split(',')
+    print property_obj
+    return render_template('images.html', property_id=id, property=property_obj, slideshows=slideshows, gallerys=gallerys)
 
+# limit the type of uploaded file
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# upload image files
 @property_blueprint.route('/property/upload', methods=['POST'])
 @login_required
 def upload_images():
     type_error = False
-    id = request.args.get('id')
+    id = request.form.get('id')
     grid_overview = request.files['grid-overview']
     grid_gallery = request.files['grid-gallery']
     grid_contact = request.files['grid-contact']
@@ -138,8 +79,11 @@ def upload_images():
     bg_explore = request.files['bg-explore']
     slideshows = request.files.getlist('slideshow[]')
     gallerys =  request.files.getlist('gallery[]')
-    property_obj = Property.query.filter_by(idproperty=id).first()
-    PROPERTY_UPLOAD_FOLDER = IMG_UPLOAD_FOLDER + current_user.agent_email + '/property/' + property_obj.domain
+    property_main = Property.query.filter_by(idproperty=id).first()
+    property_obj = PropertyImage.query.filter_by(property_id = id).first()
+    if not property_obj:
+        property_obj = PropertyImage(property_id=id)
+    PROPERTY_UPLOAD_FOLDER = IMG_UPLOAD_FOLDER + current_user.agent_email + '/property/' + property_main.domain
     mkdir(PROPERTY_UPLOAD_FOLDER)
     
     # save grid_overview
@@ -264,56 +208,128 @@ def upload_images():
     if not type_error:
         db.session.add(property_obj)
         db.session.commit()
+        flash(property_main.address + ' images upload success!','success')
     return redirect(url_for('property.property_list'))
 
+# access to the published property website
+@property_blueprint.route('/', methods=['GET'])
+def website():
+    print request.headers['Host']
+    host = request.headers['Host']
+    property_obj = Property.query.filter_by(domain = host.lower()).first()
+    if not property_obj:
+        property_obj = Property.query.filter_by(domain = ('www.'+host.lower())).first()
+    if not property_obj:
+        flash("No such domain!",'danger')
+    property_image = PropertyImage.query.filter_by(property_id = property_obj.idproperty).first()
+    slideshows = property_image.slideshows.split(',')
+    gallerys = property_image.gallerys.split(',')
+    gallerys_objs = []
+    for gallery in gallerys:
+        path = 'myapp/static/'+gallery
+        im = Image.open(path)
+        print im
+        size = im.size
+        obj = {
+            'path': gallery,
+            'voffset_on_phone': voffset_on_phone(size[0],size[1])
+        }
+        gallerys_objs += [obj]
+    full_address = property_obj.address
+    agent = Agent.query.filter_by(id = property_obj.agent_id).first()
+    if 'cn' in request.args:
+        return render_template('template_cn.html', full_address=full_address, property=property_obj,
+        slideshows=slideshows, gallerys=gallerys_objs, agent = agent, property_image=property_image)
+    return render_template('template_en.html',full_address=full_address, property=property_obj,
+        slideshows=slideshows, gallerys=gallerys_objs, agent = agent, property_image=property_image)
+
+# preview the website to be published 
 @property_blueprint.route('/property/preview',methods=['GET'])
+@login_required
 def preview():
     id = request.args.get('id')
     property_obj = Property.query.filter_by(idproperty = id).first()
-    slideshows = property_obj.slideshows.split(',')
-    gallerys = property_obj.gallerys.split(',')
-    full_address = property_obj.address1
+    if property_obj.agent_id != current_user.id:
+        flash('No right to preview the property!')
+        return redirect(url_for('property.property_list'))
+    property_image = PropertyImage.query.filter_by(property_id = id).first()
+    if not property_image.is_completed():
+        flash('Missed some images! Please upload necessary images first!','danger')
+        return redirect(url_for('property.property_list'))
+
+    slideshows = property_image.slideshows.split(',')
+    gallerys = property_image.gallerys.split(',')
+    gallerys_objs = []
+    for gallery in gallerys:
+        path = 'myapp/static/'+gallery
+        im = Image.open(path)
+        print im
+        size = im.size
+        obj = {
+            'path': gallery,
+            'voffset_on_phone': voffset_on_phone(size[0],size[1])
+        }
+        gallerys_objs += [obj]
+    full_address = property_obj.address
+    complete = True
     if not slideshows:
         flash('Miss slideshows images, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
+        complete = False
     if not gallerys:
         flash('Miss gallerys images, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.grid_overview:
+        complete = False
+    if not property_image.grid_overview:
         flash('Miss grid overview image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.grid_gallery:
+        complete = False
+    if not property_image.grid_gallery:
         flash('Miss grid gallery image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.grid_contact:
+        complete = False
+    if not property_image.grid_contact:
         flash('Miss grid contact image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.grid_explore:
+        complete = False
+    if not property_image.grid_explore:
         flash('Miss grid explore image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.background_overview:
+        complete = False
+    if not property_image.background_overview:
         flash('Miss background overview image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.background_explore:
+        complete = False
+    if not property_image.background_explore:
         flash('Miss background explore image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.background_contact:
+        complete = False
+    if not property_image.background_contact:
         flash('Miss background contact image, please upload images first!','danger')
-        return redirect(url_for('property.property_list'))
-    if not property_obj.background_contact_phone:
+        complete = False
+    if not property_image.background_contact_phone:
         flash('Miss background contact phone image, please upload images first!','danger')
+        complete = False
+    if not complete:
         return redirect(url_for('property.property_list'))
-    agent = Agent.query.filter_by(id = property_obj.agent_id).first()
-    if property_obj.address2:
-        full_address = full_address + ', ' + property_obj.address2
-    full_address = full_address + ', ' + property_obj.address3 
-    return render_template('template_en1.html',full_address=full_address, property=property_obj,
-        slideshows=slideshows, gallerys=gallerys, agent = agent)
+    agent = Agent.query.filter_by(id = property_obj.agent_id).first() 
+    if 'cn' in request.args:
+        return render_template('template_cn.html', full_address=full_address, property=property_obj,
+        slideshows=slideshows, gallerys=gallerys_objs, agent = agent, property_image=property_image)
+    return render_template('template_en.html',full_address=full_address, property=property_obj,
+        slideshows=slideshows, gallerys=gallerys_objs, agent = agent, property_image=property_image)
 
-@property_blueprint.route('/property/delete',methods=['POST'])
+# publish property website
+@property_blueprint.route('/property/publish', methods=['POST'])
 @login_required
-def property_delete():
+def publish():
     id = request.form.get('id')
-    property_obj = Property.query.filter_by(idproperty=id).delete()
+    property_image = PropertyImage.query.filter_by(property_id=id).first()
+    property_obj = Property.query.filter_by(idproperty=id).first()
+    message = ""
+    if not property_image or not property_image.is_completed():
+        message = "Can't publish because some images haven't been uploaded! Please upload images first!"
+        return jsonify({'message':message,'status':0})
+    if not property_obj.domain:
+        message = "No domain is deteted! Please buy your domain for the property first!"
+        return jsonify({'message':message,'status':0})
+    if property_obj.is_published == 1:
+        message = "The website has published!"
+        return jsonify({'message':message,'status':0})
+    property_obj.is_published = 1
+    db.session.add(property_obj)
     db.session.commit()
-    return jsonify({"message":"Delete success!", "code":1})
+    message = "Publish success!"
+    return jsonify({'message':message,'status':1})

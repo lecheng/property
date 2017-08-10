@@ -29,19 +29,18 @@ def _check_config_variables_are_set(config):
            'SQLALCHEMY_DATABASE_URI is not set, '\
            'set it in the production config file.'
 
-    if os.environ['APP_SETTINGS'] == 'myapp.config.ProductionConfig':
-        assert config['STRIPE_SECRET_KEY'] is not None,\
-               'STRIPE_SECRET_KEY is not set, '\
-               'set it in the production config file.'
-        assert config['STRIPE_PUBLISHABLE_KEY'] is not None,\
-               'STRIPE_PUBLISHABLE_KEY is not set, '\
-               'set it in the production config file.'
+    # if os.environ['APP_SETTINGS'] == 'myapp.config.ProductionConfig':
+    #     assert config['STRIPE_SECRET_KEY'] is not None,\
+    #            'STRIPE_SECRET_KEY is not set, '\
+    #            'set it in the production config file.'
+    #     assert config['STRIPE_PUBLISHABLE_KEY'] is not None,\
+    #            'STRIPE_PUBLISHABLE_KEY is not set, '\
+    #            'set it in the production config file.'
 
 app = Flask(__name__)
 CORS(app)
 
-app.config.from_object(os.environ['APP_SETTINGS'])
-
+app.config.from_object("myapp.config.ProductionConfig")
 _check_config_variables_are_set(app.config)
 
 ####################

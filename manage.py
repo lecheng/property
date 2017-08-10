@@ -19,7 +19,7 @@ COV.start()
 from myapp import app, db
 from myapp.models import Agent
 
-app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_object("myapp.config.ProductionConfig")
 
 migrate = Migrate(app, db)
 manager = Manager(app)
@@ -46,13 +46,13 @@ def cov():
 @manager.command
 def create_db():
     """Creates the db tables."""
-    db.create_all()
+    db.create_all(bind=None)
 
 
 @manager.command
 def drop_db():
     """Drops the db tables."""
-    db.drop_all()
+    db.drop_all(bind=None)
 
 
 @manager.command

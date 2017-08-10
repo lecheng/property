@@ -1,14 +1,15 @@
 property_id = ""
-$('a.delete').click(function(){
+$('a.publish').click(function(){
 	property_id = this.closest('tr').children[0].textContent;
 	bootbox.confirm("Are you sure?", function(result){
 		if(result){
-			$.post("/property/delete", {"id":property_id}, function(data){
-				alert(data.message);
-				location.href = '/property';
+			$.post("/property/publish", {"id":property_id}, function(data){
+				alert(data.message)
+				if(data.status){
+					location.href = '/property'
+				}
 			})
 		}
-		
 	})
 })
 
@@ -19,11 +20,7 @@ $('a.edit').click(function(){
 
 $('a.upload-image').click(function(){
 	property_id = this.closest('tr').children[0].textContent;
-})
-
-$('#upload-submit').click(function(){
-	var action = '/property/upload?id=' + property_id;
-	$('#upload-form').attr('action',action).submit();
+	location.href = '/property/images?id=' + property_id;
 })
 
 $('a.preview').click(function(){

@@ -14,35 +14,44 @@
 </div>
 <div class="container-fluid">
     <div class="col-sm-12">
-        <a href="/property/form" class="btn btn-default"><i class="fa fa-plus"></i> 添加房产</a>
         <div class="panel panel-success" style="margin-top:15px;">
             <div class="panel-heading">
                 <div class="panel-title">房产列表</div>
             </div>
             <div class="panel-body">
-            {% if property_list %}
+                {% if property_list %}
                 <table class="table table-hover">
                     <thead>
                     <td class="hidden">房产id</td>
                     <td>#</td>
                     <td>房产地址</td>
                     <td>网站预览</td>
-                    <!-- <td>房产详情</td> -->
-                    <td>编辑房产</td>
                     <td>上传图片</td>
-                    <td>删除房产</td>
+                    <td>房产状态</td>
+                    <td>网站发布</td>
                     </thead>
                     <tbody>
                     {% for property in property_list %}
                     <tr>
                         <td class="hidden">{{ property.idproperty }}</td>
                         <td>{{ loop.index }}</td>
-                        <td>{{ property.address1 }} {% if property.address2 %},{% endif %} {{ property.address2 }} {% if property.address3 %}, {% endif %} {{ property.address3}}</td>
+                        <td>{{ property.address }} </td>
                         <td><a class="btn btn-default preview"><i class="fa fa-eye"></i></a></td>
                         <!-- <td><a class="btn btn-default detail"><i class="fa fa-info-circle"></i></a></td> -->
-                        <td><a class="btn btn-default edit"><i class="fa fa-edit"></i></a></td>
-                        <td><a class="btn btn-default upload-image" data-toggle="modal" data-target="#ImageUploadModal"><i class="fa fa-image"></i></a></td>
-                        <td><a class="btn btn-default delete"><i class="fa fa-trash"></i></a></td>
+                        <!-- <td><a class="btn btn-default edit"><i class="fa fa-edit"></i></a></td> -->
+                        <td><a class="btn btn-default upload-image"><i class="fa fa-upload"></i></a></td>
+                        <td>
+                        {% if property.is_published %}
+                        <span style="color: blue">已发布<span>
+                        {% else %}
+                        {% if not property.domain %}
+                        <span style="color: red">无域名<span>
+                        {% endif %}
+                        <span style="color: red">未发布<span>
+
+                        {% endif %}
+                        </td>
+                        <td><a class="btn btn-default publish"><i class="fa fa-paper-plane"></i></a></td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -50,120 +59,14 @@
                 {% else %}
                 <div>尚无房产记录</div>
                 {% endif %}
-            </div>
-        </div>
-        <!-- Modal -->
-    <div id="ImageUploadModal" class="modal fade" role="dialog">
-        <div class="modal-dialog container-fluid" style="width:auto;">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">上传图片</h4>
+                <div class="col-sm-12 item">
+                <div class="col-xs-12 btng" style="text-align: right;">
+                    <a href="/home" class="btn btn-default ss">返回</a>
                 </div>
-                <div class="modal-body">
-                    <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Upload Images</h3>
-                            </div>
-                            <div class="panel-body">
-                            <form id="upload-form" enctype=multipart/form-data method="POST">
-                                <div><label>Grid Image</label></div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"OVERVIEW (390*340)"</span><input name="grid-overview" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_overview.jpg');">Grid Image - Overview</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"GALLERY" (390*340)</span><input name="grid-gallery" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_gallery.jpg');">Grid Image - Gallery</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"CONTACT" (390*695)</span><input name="grid-contact" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_contact.jpg');">Grid Image - Contact</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"EXPLORE" (795*340)</span><input name="grid-explore" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/grid_explore.jpg');">Grid Image - Explore</a>)</span>
-                                    </div>
-                                </div>
-                                <div><label>Background Image</label></div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"OVERVIEW (1200*695)"</span><input name="bg-overview" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/background_overview.jpg');">Background Image - Overview</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>CONTACT" (1200*695)</span><input name="bg-contact" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/background_contact.jpg');">Background Image - Contact</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"CONTACT (Phone)" (480*695)</span><input name="bg-contact-phone" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/background_contact_phone.jpg');">Background Image - Contact(Phone)</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>"EXPLORE" (1200*695)</span><input name="bg-explore" type="file" style="display:inline">
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/background_explore.jpg');">Background Image - Explore</a>)</span>
-                                    </div>
-                                </div>
-                                <div><label>Slideshow & Gallery</label></div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>Slideshow (1600 wide)</span><input name="slideshow[]" type="file" style="display:inline" multiple>
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/slideshow/slideshow_1.jpg');window.open('./example/slideshow/slideshow_2.jpg');window.open('./example/slideshow/slideshow_3.jpg');window.open('./example/slideshow/slideshow_4.jpg');window.open('./example/slideshow/slideshow_5.jpg');">Slideshow Images</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-sm-8">
-                                        <span>Gallery (1200 wide or 695 tall)</span><input name="gallery[]" type="file" style="display:inline" multiple>
-                                    </div>
-                                    <div class="col-sm-4" style="text-align: right">
-                                        <span>(eg. <a href="#" onclick="window.open('./example/gallery/gallery_1.jpg');window.open('./example/gallery/gallery_2.jpg');window.open('./example/gallery/gallery_3.jpg');window.open('./example/gallery/gallery_4.jpg');">Gallery Images</a>)</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 item">
-                                    <div class="col-xs-12 btng">
-                                        <button id="upload-submit" class="btn ss">上传</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        
-                    </div>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 {% endblock %}

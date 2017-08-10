@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="/home">首页</a></li>
+        <li><a href="/property">房产管理</a></li>
+        <li><a href="/property/images?id={{ property.property_id }}" class="active">上传图片</a></li>
+    </ol>
+</div>
+<div class="container-fluid col-sm-10 col-sm-offset-1">
+<form action="/property/upload" enctype=multipart/form-data method="POST">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Grid Images</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12 item">
+                <div><label>GRID OVERVIEW</label></div>
+                <input id="property-id" name="id" class="hidden" type="text" required value="{{ property_id }}">
+                <div class="col-sm-3">
+                    {% if property.grid_overview %}
+                    <img src={{ url_for('static', filename = property.grid_overview )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"OVERVIEW" (390*340)</span><input name="grid-overview" type="file" style="display:inline">
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div><label>GRID GALLERY</label></div>
+                <div class="col-sm-3">
+                    {% if property.grid_gallery %}
+                    <img src={{ url_for('static', filename = property.grid_gallery )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"GALLERY" (390*340)</span><input name="grid-gallery" type="file" style="display:inline">
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div><label>GRID CONTACT</label></div>
+                <div class="col-sm-3">
+                    {% if property.grid_contact %}
+                    <img src={{ url_for('static', filename = property.grid_contact )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"CONTACT" (390*695)</span><input name="grid-contact" type="file" style="display:inline">
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div><label>GRID EXPLORE</label></div>
+                <div class="col-sm-3">
+                    {% if property.grid_explore %}
+                    <img src={{ url_for('static', filename = property.grid_explore )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"EXPLORE" (795*340)</span><input name="grid-explore" type="file" style="display:inline">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Background Images</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12 item">
+                <div><label>BACKGROUND OVERVIEW</label></div>
+                <div class="col-sm-3">
+                    {% if property.background_overview %}
+                    <img src={{ url_for('static', filename = property.background_overview )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"OVERVIEW (1200*695)"</span><input name="bg-overview" type="file" style="display:inline">
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div><label>BACKGROUND CONTACT</label></div>
+                <div class="col-sm-3">
+                    {% if property.background_contact %}
+                    <img src={{ url_for('static', filename = property.background_contact )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>CONTACT" (1200*695)</span><input name="bg-contact" type="file" style="display:inline">
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div><label>BACKGROUND CONTACT (Phone)</label></div>
+                <div class="col-sm-3">
+                    {% if property.background_contact_phone %}
+                    <img src={{ url_for('static', filename = property.background_contact_phone )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"CONTACT (Phone)" (480*695)</span><input name="bg-contact-phone" type="file" style="display:inline">
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div><label>BACKGROUND EXPLORE</label></div>
+                <div class="col-sm-3">
+                    {% if property.background_explore %}
+                    <img src={{ url_for('static', filename = property.background_explore )}} style="width:100px;height:100px;">
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-9" style="text-align: right">
+                    <span>"EXPLORE" (1200*695)</span><input name="bg-explore" type="file" style="display:inline">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Slideshow & Gallery</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12 item">
+                <div class="col-sm-8">
+                <div><label>SLIDESHOWS</label></div>
+                    {% if slideshows %}
+                    {% for slideshow in slideshows %}
+                    <img src={{ url_for('static', filename = slideshow )}} style="width:100px;height:100px;padding-right: 5px;">
+                    {% endfor %}
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <span>Slideshow (1600 wide)</span><input name="slideshow[]" type="file" style="display:inline" multiple>
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div class="col-sm-8">
+                <div><label>GALLERYS</label></div>
+                    {% if gallerys %}
+                    {% for gallery in gallerys %}
+                    <img src={{ url_for('static', filename = gallery )}} style="width:100px;height:100px;padding-right: 5px;">
+                    {% endfor %}
+                    {% else %}
+                    <div class="center">图片尚未上传</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <span>Gallery (1200 wide or 695 tall)</span>
+                    <input name="gallery[]" type="file" style="display:inline" multiple>
+                </div>
+            </div>
+            <div class="col-sm-12 item">
+                <div class="col-xs-12 btng" style="text-align: right;">
+                    <a href="/property" class="btn btn-default ss">返回</a>
+                    <button id="upload-submit" class="btn btn-primary ss">上传</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='assets/js/form.js')}}"></script>
+    <script type="text/javascript">
+        
+            property_id = $('#property-id').val();
+            $('#upload-submit').click(function(){
+                $('#upload-form').submit();
+            })
+    </script>
+{% endblock %}

@@ -37,121 +37,18 @@
                 <div class="col-sm-12 item">
                     <i class="fa fa-address-book" title="Office Address" aria-hidden="true"></i>: {{ current_user.agent_office }}
                 </div>
-            </div>
-            <div class="col-sm-4 center">
                 <div class="col-sm-12 item">
-                    <span class="glyphicon glyphicon-qrcode"></span> 
+                    <span title="Qrcode" class="glyphicon glyphicon-qrcode"></span> 
                     {% if current_user.agent_qrcode %}
                     <img src="{{ url_for('static',filename=current_user.agent_qrcode) }}" style="width:100px;height: 100px">
                     {% endif %}
                 </div>
-                <div class="col-sm-12 item center">
-                    <button id="edit-btn" class="btn btn-sm btn-success"><i class="fa fa-edit" aria-hidden="true"></i> 编辑信息</button>
-                    <button style="margin-top:15px;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#qrcodeModal"><i class="fa fa-edit" aria-hidden="true"></i>修改二维码</button>
+            </div>
+             <div class="col-sm-12 item">
+                <div class="col-xs-12 btng" style="text-align: right;">
+                    <a href="/home" class="btn btn-default ss">返回</a>
                 </div>
             </div>
-
-
-        </div>
-    </div>
-    <!-- Modal -->
-    <div id="qrcodeModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">修改二维码</h4>
-                </div>
-                <div class="modal-body">
-                    <div style="height: 30px;">
-                        <form id="qrcode-form" action="/upload/" role="form" method="POST" enctype=multipart/form-data>
-                            <div class="col-sm-12 item">
-                                <div class="col-sm-8">
-                                    <input id="qrcode" name="qrcode" ng-model="qrcode" type="file" required>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="col-xs-12 btng">
-                        <button id="qrcode-submit" type="submit" class="btn ss">上传</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="edit-panel" class="panel panel-success hide">
-        <div class="panel-heading">
-            <h3 class="panel-title">Agent Contact Info</h3>
-        </div>
-        <div class="panel-body">
-        <form action="/agent/save" method="POST" enctype=multipart/form-data>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="name" title="Name" class="form-control" type="text" placeholder="Name" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. Henry Liu)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="agent_license" title="License" class="form-control" type="text" placeholder="License Number" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. DRE Lic. 01378289)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="us_phone" ng-model="us_phone" title="US Phone" class="form-control" type="text" placeholder="US Phone Number" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. +1 (518)-227-3089)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="chinese_phone" ng-model="chinese_phone" title="Chinese Phone" class="form-control" type="text" placeholder="China Phone Number" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. +86 152-1948-3964)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="wechat" ng-model="wechat" title="Wechat" class="form-control" type="text" placeholder="WeChat ID" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. thanrl)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="email" ng-model="email" title="Email" class="form-control" type="email" placeholder="Email Address" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. edriclihaoming@hotmail.com)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-8">
-                    <input name="address" ng-model="address" title="Office Address" class="form-control" type="text" placeholder="Office Address" required>
-                </div>
-                <div class="col-sm-4" style="text-align: right">
-                    <span>(eg. Coldwell Banker Dynasty; 77 W Las Tunas Dr; Arcadia, CA 91007)</span>
-                </div>
-            </div>
-            <div class="col-sm-12 item">
-                <div class="col-sm-4 col-sm-offset-8 center">
-                    <a id="cancel-btn" class="btn btn-danger">取消</a>
-                    <input type="submit" id="save-btn" class="btn btn-info" value="保存">
-                </div>
-            </div>
-            </form>
         </div>
     </div>
 </div>
